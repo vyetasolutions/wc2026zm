@@ -44,7 +44,7 @@
             line-height: 1.5;
         }
 
-        /* Scrollbar Erasure for Terminal Look */
+        /* Scrollbar Erasure for Sleek Look */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -696,17 +696,17 @@
         <div class="brand">
             <div class="brand-flag">🇿🇲</div>
             <div class="brand-title">
-                <h1>ZamWorld Football Intelligence</h1>
-                <p>World Cup 2026 & African Analytics Node</p>
+                <h1>ZamWorld Football Hub</h1>
+                <p>World Cup 2026 & African Football Analytics</p>
             </div>
         </div>
         <div style="display: flex; gap: 12px; align-items: center;">
             <button class="settings-toggle" onclick="toggleConfigModal(true)">
-                ⚙️ Core APIs
+                ⚙️ Live Data Settings
             </button>
             <div class="terminal-status">
                 <div class="pulse-dot"></div>
-                <span id="runtime-clock">SYS_LIVE // 2026</span>
+                <span id="runtime-clock">LIVE ZONE // 2026</span>
             </div>
         </div>
     </header>
@@ -714,8 +714,8 @@
     <!-- SECTION 1: ZamWorld Daily Match Intelligence -->
     <section>
         <div class="section-header">
-            <h2>Daily Match Intelligence</h2>
-            <span>• Calculations Engine</span>
+            <h2>Today's Match Focus</h2>
+            <span>• Pre-game Stats & Win Probabilities</span>
         </div>
         <div id="row-daily-intelligence" class="scroll-row">
             <!-- Dynamic Injection or Fallback Shell -->
@@ -725,8 +725,8 @@
     <!-- SECTION 2: World Cup 2026 Tracker -->
     <section>
         <div class="section-header">
-            <h2>World Cup 2026 Tracker</h2>
-            <span>• Group Status & Standing Modules</span>
+            <h2>Road to the World Cup</h2>
+            <span>• Latest Group Standings</span>
         </div>
         <div id="row-wc-tracker" class="scroll-row">
             <!-- Dynamic Standings Framework -->
@@ -736,8 +736,8 @@
     <!-- SECTION 3: Live Match Center -->
     <section>
         <div class="section-header">
-            <h2>Live Match Center</h2>
-            <span>• Real-Time Critical Events & Momentum</span>
+            <h2>Matchday Center</h2>
+            <span>• Live Scores, Events & Match Momentum</span>
         </div>
         <div id="row-live-center" class="scroll-row">
             <!-- Dynamic Injection or Live Fallbacks -->
@@ -747,8 +747,8 @@
     <!-- SECTION 4: Zambia & Africa Focus -->
     <section>
         <div class="section-header">
-            <h2>Zambia & Africa Focus</h2>
-            <span>• Regional Deep Analytics Node</span>
+            <h2>The Motherland Focus</h2>
+            <span>• Deep Dive into Zambian & African Football</span>
         </div>
         <div id="row-africa-focus" class="scroll-row">
             <!-- Dynamic African Context Node -->
@@ -758,8 +758,8 @@
     <!-- SECTION 5: AI Football Insights Layer -->
     <section>
         <div class="section-header">
-            <h2>AI Football Insights Layer</h2>
-            <span>• Pure Analytical Trends (No Simulated Speculation)</span>
+            <h2>AI Form Guide</h2>
+            <span>• Data-Driven Trends (Real Stats, No Guesswork)</span>
         </div>
         <div id="row-ai-insights" class="scroll-row">
             <!-- Rule-Based Deterministic Analytics Framework -->
@@ -769,8 +769,8 @@
     <!-- Configuration Modal Structural Overlay -->
     <div id="configOverlay" class="config-overlay">
         <div class="config-modal">
-            <h3>Terminal Data Connectivity</h3>
-            <p>Insert operational parameters for external live data streams and distributed commentary arrays.</p>
+            <h3>Live Data Setup</h3>
+            <p>Connect your APIs to get real-time scores and power the live fan comments.</p>
             
             <div class="form-group">
                 <label>API-Football (RapidAPI Key)</label>
@@ -778,13 +778,13 @@
             </div>
             
             <div class="form-group">
-                <label>Google Apps Script URL (Comment DB Deployment)</label>
+                <label>Google Apps Script URL (For Comments)</label>
                 <input type="text" id="inputScriptUrl" placeholder="https://script.google.com/macros/s/.../exec">
             </div>
 
             <div class="modal-actions">
                 <button class="btn-secondary" onclick="toggleConfigModal(false)">Cancel</button>
-                <button class="btn-primary" onclick="saveConfiguration()">Save Parameters</button>
+                <button class="btn-primary" onclick="saveConfiguration()">Save Changes</button>
             </div>
         </div>
     </div>
@@ -824,21 +824,21 @@
                 ]}
             ],
             africaFocus: [
-                { id: "af-201", tournament: "COSAFA Cup 2026", match: "Zambia vs Namibia", data: "Chipolopolo tactical setup tracking 62% horizontal field transition dominance inside regional parameters." },
-                { id: "af-202", tournament: "CAF Champions League", match: "Zesco United vs Al Ahly", data: "High altitude structural containment metrics indicate Al Ahly tactical passing efficiency decreases by 14% post 60th minute mark." }
+                { id: "af-201", tournament: "COSAFA Cup 2026", match: "Zambia vs Namibia", data: "Chipolopolo are dominating possession, moving the ball beautifully across the pitch in their recent regional clashes." },
+                { id: "af-202", tournament: "CAF Champions League", match: "Zesco United vs Al Ahly", data: "Playing at high altitude is taking its toll—Al Ahly's passing accuracy drops noticeably after the 60-minute mark." }
             ],
             aiInsights: [
-                { type: "POSSESSION DYNAMICS", message: "Zambia exhibits high spatial verticalization over the last 5 matches, transitioning from defensive blocks to final third inside 7.4 seconds average.", context: "Data derived from tracking arrays" },
-                { type: "CRITICAL MOMENTUM DEFICIT", message: "Algeria's structural defensive line drops an average of 8 meters lower when pressing intensity exceeds 70 minutes under high thermal environments.", context: "Calculated fatigue parameter" },
-                { type: "AWAY PHASING CORRELATION", message: "Morocco clean-sheet efficiency metrics reduce by 22% when away tracking metrics drop under 45% possession threshold.", context: "Historical trend matrix" }
+                { type: "POSSESSION & ATTACK", message: "Zambia loves the counter-attack, moving from defense to the opponent's box in under 8 seconds on average across their last 5 games.", context: "Recent Form Data" },
+                { type: "LATE GAME PRESSURE", message: "Algeria tends to drop deep and defend their box when under heavy pressure late in the game, especially in hot conditions.", context: "Fatigue Analysis" },
+                { type: "AWAY FORM TREND", message: "Morocco struggles to keep a clean sheet away from home when they have less than 45% possession.", context: "Historical Form" }
             ],
             commentsFallback: {
                 "wc-live-01": [
-                    { user: "Fan-849", text: "Daka showing massive vertical efficiency today! Let's hold this lead!" },
-                    { user: "Fan-211", text: "Midfield transitions are looking extremely stable under the low-block." }
+                    { user: "Fan-849", text: "Daka is looking so sharp up front today! We need to hold this lead!" },
+                    { user: "Fan-211", text: "Midfield is doing a great job cutting off their passing lanes." }
                 ],
                 "wc-live-02": [
-                    { user: "Fan-902", text: "Tactical stalemate. Both lines playing hyper-conservatively." }
+                    { user: "Fan-902", text: "Tight game so far. Neither team wants to make the first mistake." }
                 ]
             }
         };
@@ -859,7 +859,7 @@
             const clock = document.getElementById('runtime-clock');
             const updateTime = () => {
                 const now = new Date();
-                clock.textContent = `SYS_LIVE // ${now.toISOString().replace('T', ' ').substring(0, 19)} UTC`;
+                clock.textContent = `LIVE ZONE // ${now.toISOString().replace('T', ' ').substring(0, 19)} UTC`;
             };
             updateTime();
             setInterval(updateTime, 1000);
@@ -905,7 +905,7 @@
                     const fetchedData = await fetchProductionData();
                     renderAllComponents(fetchedData);
                 } catch (error) {
-                    console.error("API Gateway error down-stepping to internal data parameters", error);
+                    console.error("Failed to load live API data. Falling back to default display.", error);
                     renderAllComponents(MOCK_DATA);
                 }
             }
@@ -986,7 +986,7 @@
                     homeIso: m.teams.home.name.substring(0,2).toUpperCase(),
                     awayIso: m.teams.away.name.substring(0,2).toUpperCase(),
                     momentum: momentumMetric,
-                    events: eventsArray.length > 0 ? eventsArray : ["No recent critical match events register."]
+                    events: eventsArray.length > 0 ? eventsArray : ["No major match events yet."]
                 };
             });
 
@@ -997,7 +997,7 @@
                 wcGroups: MOCK_DATA.wcGroups,
                 africaFocus: MOCK_DATA.africaFocus,
                 aiInsights: mappedLive.length > 0 ? [
-                    { type: "LIVE IN-PLAY INTEL", message: `Active data tracking clusters show average shift parameter modifications running across ${mappedLive.length} active global matches.`, context: "Calculated Real-Time" }
+                    { type: "LIVE FORM UPDATE", message: `We are currently tracking live data across ${mappedLive.length} active matches around the world.`, context: "Live Calculation" }
                 ] : MOCK_DATA.aiInsights,
                 commentsFallback: MOCK_DATA.commentsFallback
             };
@@ -1015,7 +1015,7 @@
         function renderDailyIntelligence(items) {
             const container = document.getElementById('row-daily-intelligence');
             if(!items || items.length === 0) {
-                container.innerHTML = `<div class="fallback-alert">No daily match intelligence processing clusters active.</div>`;
+                container.innerHTML = `<div class="fallback-alert">No matches scheduled for today.</div>`;
                 return;
             }
             container.innerHTML = items.map(item => `
@@ -1042,9 +1042,9 @@
                     </div>
                     <div class="analysis-metrics">
                         <div class="prob-header">
-                            <span>H: ${item.probHome}%</span>
-                            <span>D: ${item.probDraw}%</span>
-                            <span>A: ${item.probAway}%</span>
+                            <span>Home Win: ${item.probHome}%</span>
+                            <span>Draw: ${item.probDraw}%</span>
+                            <span>Away Win: ${item.probAway}%</span>
                         </div>
                         <div class="prob-bar-container">
                             <div class="prob-segment prob-home" style="width: ${item.probHome}%"></div>
@@ -1094,7 +1094,7 @@
         function renderLiveCenter(matches, fallbacks) {
             const container = document.getElementById('row-live-center');
             if(!matches || matches.length === 0) {
-                container.innerHTML = `<div class="fallback-alert">No matches currently executing parameters on live transmission paths.</div>`;
+                container.innerHTML = `<div class="fallback-alert">No live matches right now. Check back at kick-off!</div>`;
                 return;
             }
             container.innerHTML = matches.map(m => `
@@ -1124,7 +1124,7 @@
                         <!-- Live Momentum Module Implementation -->
                         <div style="margin-bottom:14px;">
                             <div class="momentum-title">
-                                <span>${m.home.substring(0,3).toUpperCase()} Attack Domination</span>
+                                <span>${m.home.substring(0,3).toUpperCase()} Attacking Pressure</span>
                                 <span style="color:var(--neon-blue)">${m.away.substring(0,3).toUpperCase()}</span>
                             </div>
                             <div class="momentum-container">
@@ -1136,7 +1136,7 @@
 
                         <!-- Micro Event Feed Stream -->
                         <div style="margin-bottom:14px; background:rgba(0,0,0,0.15); padding:8px; border-radius:8px; border:1px solid rgba(255,255,255,0.02)">
-                            <div style="font-size:0.65rem; color:var(--text-secondary); text-transform:uppercase; margin-bottom:4px;">Timeline Feeds</div>
+                            <div style="font-size:0.65rem; color:var(--text-secondary); text-transform:uppercase; margin-bottom:4px;">Match Action</div>
                             <div style="display:flex; flex-direction:column; gap:4px;">
                                 ${m.events.map(ev => `<div style="font-size:0.7rem; font-family:monospace; color:#cbd5e1;">${ev}</div>`).join('')}
                             </div>
@@ -1146,16 +1146,16 @@
                     <!-- Live Pulse System Panel Implementation -->
                     <div class="live-pulse-panel">
                         <div class="panel-title">
-                            <span>Anonymous Pulse Feed</span>
-                            <span style="font-size:0.6rem; color:var(--neon-green)">● Streaming</span>
+                            <span>Live Fan Reactions</span>
+                            <span style="font-size:0.6rem; color:var(--neon-green)">● Live</span>
                         </div>
                         <div class="comment-stream" id="stream-${m.id}">
                             <!-- Data Injected System Nodes -->
-                            <div style="font-size:0.7rem; color:var(--text-secondary)">Syncing local pipeline nodes...</div>
+                            <div style="font-size:0.7rem; color:var(--text-secondary)">Loading fan comments...</div>
                         </div>
                         <div class="comment-input-group">
-                            <input type="text" class="comment-input" id="input-${m.id}" placeholder="Type analytical insight...">
-                            <button class="comment-btn" onclick="executePostComment('${m.id}')">Send</button>
+                            <input type="text" class="comment-input" id="input-${m.id}" placeholder="Have your say on the match...">
+                            <button class="comment-btn" onclick="executePostComment('${m.id}')">Post</button>
                         </div>
                     </div>
                 </div>
@@ -1183,7 +1183,7 @@
                         </p>
                     </div>
                     <div style="margin-top:16px; font-size:0.65rem; font-family:monospace; color:var(--neon-gold); text-transform:uppercase;">
-                        Processing Parameter Node: Africa-South-01
+                        Scouting Report: Southern Africa
                     </div>
                 </div>
             `).join('');
@@ -1203,8 +1203,8 @@
                         </p>
                     </div>
                     <div class="insight-footer">
-                        <span>Deterministic Parsing</span>
-                        <span>Confidence Level: 94.2%</span>
+                        <span>Based on Recent Form</span>
+                        <span>High Confidence</span>
                     </div>
                 </div>
             `).join('');
@@ -1241,7 +1241,7 @@
 
         function renderCommentsToWidget(target, elements) {
             if(elements.length === 0) {
-                target.innerHTML = `<div style="font-size:0.7rem; color:var(--text-secondary); italic;">No structural entries registered. Post an insight below.</div>`;
+                target.innerHTML = `<div style="font-size:0.7rem; color:var(--text-secondary); italic;">Be the first to share your thoughts on this game!</div>`;
                 return;
             }
             target.innerHTML = elements.map(el => `
@@ -1283,7 +1283,7 @@
                         })
                     });
                 } catch (error) {
-                    console.error("Comment submission connection error, cached inside instance lifecycle context.", error);
+                    console.error("Failed to submit comment to backend.", error);
                 }
             } else {
                 // Cache metrics mapping parameters locally inside mock framework array limits
