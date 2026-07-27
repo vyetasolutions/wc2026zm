@@ -9,7 +9,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    background: #0f172a;
+    background: #e2e8f0;
     font-family: 'Inter', sans-serif;
     display: flex;
     flex-direction: column;
@@ -22,12 +22,12 @@
   .instructions {
     max-width: 480px;
     text-align: center;
-    color: #94a3b8;
+    color: #475569;
     font-size: 13px;
     margin-bottom: 16px;
     line-height: 1.5;
   }
-  .instructions b { color: #f8fafc; }
+  .instructions b { color: #0a1128; }
 
   .stage {
     position: relative;
@@ -36,28 +36,27 @@
     background: #020617;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
   }
 
-  /* Persistent Logo Header visible across all slides */
-  .top-logo-bar {
+  /* Persistent Logo Header Featured Prominently Throughout */
+  .logo-header {
     position: absolute;
-    top: 20px;
+    top: 22px;
     left: 0;
     right: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 20;
+    z-index: 10;
     pointer-events: none;
   }
-  .top-logo-bar img {
-    height: 52px;
+  .logo-header img {
+    height: 44px;
     width: auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.35);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: #000;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.1);
   }
 
   .slide {
@@ -68,7 +67,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 84px 36px 36px;
+    padding: 64px 40px 40px;
     opacity: 0;
     transform: scale(1.04);
     transition: opacity 0.7s ease, transform 0.9s ease;
@@ -83,92 +82,57 @@
   .bg-glow {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 50% 25%, #14224d 0%, #020617 75%);
+    background: radial-gradient(ellipse at 50% 20%, #14224d 0%, #020617 70%);
     z-index: 0;
   }
 
-  .content { 
-    position: relative; 
-    z-index: 1; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center;
-    width: 100%;
+  .content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
+
+  .mark img {
+    width: 72px; height: 72px; border-radius: 18px;
+    box-shadow: 0 0 40px rgba(212,151,42,0.35);
+    margin-bottom: 22px;
+    opacity: 0;
+    border: 1px solid rgba(212,151,42,0.4);
+    animation: pop 0.6s ease forwards 0.15s;
+  }
+
+  @keyframes pop {
+    0% { opacity: 0; transform: scale(0.6); }
+    100% { opacity: 1; transform: scale(1); }
   }
 
   .eyebrow {
     font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-    color: #d4972a; margin-bottom: 12px;
+    color: #d4972a; margin-bottom: 14px;
     opacity: 0; animation: rise 0.6s ease forwards 0.2s;
   }
 
   h1.headline {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 700;
-    font-size: 38px;
+    font-size: 40px;
     line-height: 1.15;
     color: #f8fafc;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
     opacity: 0; animation: rise 0.65s ease forwards 0.3s;
   }
 
   p.sub {
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.55;
     color: #b0c0e8;
     max-width: 340px;
     opacity: 0; animation: rise 0.65s ease forwards 0.42s;
   }
 
-  /* Star Feature Badge & Visuals */
-  .star-badge {
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
-    color: #ffffff;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    padding: 6px 16px;
-    border-radius: 999px;
-    margin-bottom: 14px;
-    box-shadow: 0 0 25px rgba(37, 99, 235, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    opacity: 0;
-    animation: pop 0.5s ease forwards 0.15s;
-  }
-
-  .ocr-visual {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 18px;
-    opacity: 0;
-    animation: rise 0.6s ease forwards 0.55s;
-    width: 100%;
-  }
-  .ocr-box {
-    background: rgba(30, 41, 59, 0.8);
-    border: 1px solid rgba(59, 130, 246, 0.4);
-    padding: 10px 14px;
-    border-radius: 12px;
-    font-size: 13px;
-    font-weight: 600;
-    color: #60a5fa;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  }
-  .ocr-arrow {
-    color: #d4972a;
-    font-weight: 800;
-    font-size: 16px;
-  }
-
   .feature-list {
-    display: flex; flex-direction: column; gap: 12px; margin-top: 10px; width: 100%; max-width: 340px;
+    display: flex; flex-direction: column; gap: 14px; margin-top: 8px; width: 100%; max-width: 340px;
   }
   .feature-row {
     display: flex; align-items: center; gap: 12px; text-align: left;
     background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(212,151,42,0.22);
+    border: 1px solid rgba(212,151,42,0.18);
     border-radius: 14px;
     padding: 12px 16px;
     opacity: 0; transform: translateX(-14px);
@@ -181,12 +145,8 @@
     width: 8px; height: 8px; border-radius: 50%;
     background: #d4972a; flex-shrink: 0;
   }
-  .feature-row span.txt { font-size: 14px; color: #e2e8f0; font-weight: 600; }
+  .feature-row span.txt { font-size: 14.5px; color: #e2e8f0; font-weight: 600; }
 
-  @keyframes pop {
-    0% { opacity: 0; transform: scale(0.6); }
-    100% { opacity: 1; transform: scale(1); }
-  }
   @keyframes rise {
     0% { opacity: 0; transform: translateY(14px); }
     100% { opacity: 1; transform: translateY(0); }
@@ -207,68 +167,54 @@
   }
 
   .cta-btn {
-    margin-top: 16px;
+    margin-top: 20px;
     background: linear-gradient(180deg, #f0c356, #d4972a 60%, #b3791f);
     color: #020617;
     font-weight: 800;
     font-size: 15px;
-    padding: 13px 30px;
+    padding: 14px 32px;
     border-radius: 999px;
     box-shadow: 0 8px 24px rgba(212,151,42,0.35);
-    opacity: 0; animation: rise 0.6s ease forwards 0.5s;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
+    opacity: 0; animation: rise 0.6s ease forwards 0.55s;
   }
 
-  /* Contact Information Box on Final Slide */
-  .contact-box {
+  .contact-details {
     margin-top: 16px;
-    background: rgba(15, 23, 42, 0.85);
-    border: 1px solid rgba(59, 130, 246, 0.35);
-    border-radius: 14px;
-    padding: 12px 18px;
-    width: 100%;
-    max-width: 320px;
-    text-align: left;
-    opacity: 0;
-    animation: rise 0.6s ease forwards 0.62s;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  }
-  .contact-title {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #94a3b8;
-    margin-bottom: 6px;
-    font-weight: 700;
-    text-align: center;
-  }
-  .contact-item {
     font-size: 13.5px;
-    color: #f8fafc;
+    color: #e2e8f0;
+    line-height: 1.6;
     font-weight: 600;
-    margin: 4px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+    opacity: 0; animation: rise 0.6s ease forwards 0.65s;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(212,151,42,0.25);
+    padding: 10px 20px;
+    border-radius: 12px;
   }
-  .contact-item span {
-    color: #60a5fa;
-  }
+  .contact-details span { color: #f5db8f; }
 
   .trial-badge {
-    margin-top: 12px;
-    font-size: 11.5px;
+    margin-top: 14px;
+    font-size: 12px;
     color: #94a3b8;
-    opacity: 0; animation: rise 0.6s ease forwards 0.72s;
+    opacity: 0; animation: rise 0.6s ease forwards 0.75s;
+  }
+
+  .tagline-footer {
+    position: absolute;
+    bottom: 22px; left: 0; right: 0;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #64748b;
+    z-index: 1;
   }
 
   .progress-wrap {
     display: flex; gap: 6px; margin-top: 18px; width: min(92vw, 480px);
   }
   .progress-track {
-    flex: 1; height: 3px; background: rgba(148,163,184,0.25); border-radius: 999px; overflow: hidden;
+    flex: 1; height: 3px; background: rgba(148,163,184,0.35); border-radius: 999px; overflow: hidden;
   }
   .progress-fill {
     height: 100%; width: 0%; background: #d4972a; border-radius: 999px;
@@ -280,27 +226,28 @@
     margin-top: 14px; display: flex; gap: 10px;
   }
   .ctrl-btn {
-    font-size: 12px; font-weight: 600; color: #f8fafc;
-    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 999px;
+    font-size: 12px; font-weight: 600; color: #475569;
+    background: white; border: 1px solid #cbd5e1; border-radius: 999px;
     padding: 7px 16px; cursor: pointer;
-    transition: background 0.2s;
   }
-  .ctrl-btn:hover { background: rgba(255,255,255,0.2); }
+  .ctrl-btn:hover { background: #f1f5f9; }
 </style>
 </head>
 <body>
 
   <div class="instructions">
-    <b>Vyeta Business Hub — Facebook Ad Slideshow.</b><br>
-    Playing automatically below. To create your Facebook ad: use your phone or laptop screen recorder to record it playing through once (~28 seconds), then trim and upload!
+    <b>Vyeta Business Hub — animated ad slideshow.</b><br>
+    Playing automatically below. To turn this into a video for Facebook: use your phone or laptop's screen recorder while it plays through once (about 40 seconds), then trim/upload the recording as your ad video.
   </div>
 
   <div class="stage" id="stage">
 
-    <div class="top-logo-bar">
+    <!-- Persistent Logo Featured Prominently Across All Slides -->
+    <div class="logo-header">
       <img src="612395529_911449065271796_2196795057515150708_n.jpg" alt="Vyeta Logo">
     </div>
 
+    <!-- Slide 1 -->
     <div class="slide active" id="s1">
       <div class="bg-glow"></div>
       <div class="content">
@@ -310,38 +257,38 @@
       </div>
     </div>
 
+    <!-- Slide 2 -->
     <div class="slide" id="s2">
       <div class="bg-glow"></div>
       <div class="content">
-        <div class="eyebrow" style="color:#60a5fa;">Introducing</div>
-        <h1 class="headline" style="font-size:42px; color:#ffffff;">Vyeta Business Hub</h1>
+        <div class="mark"><img src="612395529_911449065271796_2196795057515150708_n.jpg" alt="Vyeta Logo"></div>
+        <div class="eyebrow">Introducing</div>
+        <h1 class="headline">Vyeta Business Hub</h1>
         <p class="sub">The all-in-one app built for Zambian entrepreneurs — invoices, stock, staff, and profit, all in one place.</p>
       </div>
     </div>
 
+    <!-- Slide 3 -->
     <div class="slide" id="s3">
       <div class="bg-glow"></div>
       <div class="content">
         <div class="eyebrow">In seconds, not hours</div>
-        <h1 class="headline" style="font-size:32px;">Create Invoices,<br>Quotations & Receipts<br>instantly</h1>
+        <h1 class="headline" style="font-size:32px;">Create Invoices,<br>Quotations and Receipts<br>instantly</h1>
         <p class="sub">Professional PDF documents, generated on your phone, shared straight to WhatsApp.</p>
       </div>
     </div>
 
+    <!-- Slide 4: NEW STAR FEATURE (OCR) -->
     <div class="slide" id="s4">
       <div class="bg-glow"></div>
       <div class="content">
-        <div class="star-badge">★ OUR STAR FEATURE ★</div>
+        <div class="eyebrow" style="color:#f5db8f;">★ Our Star Feature ★</div>
         <h1 class="headline" style="font-size:32px;">Smart OCR Document<br>Management</h1>
-        <p class="sub">Upload images of bills and receipts. Our smart OCR converts them into clear, searchable files instantly — so you are never left searching.</p>
-        <div class="ocr-visual">
-          <div class="ocr-box">📸 Snap & Upload</div>
-          <div class="ocr-arrow">➔</div>
-          <div class="ocr-box">🔍 Instant Search</div>
-        </div>
+        <p class="sub">Upload images and turn them into clear, searchable files instantly — manage documents efficiently so you are never left searching.</p>
       </div>
     </div>
 
+    <!-- Slide 5 -->
     <div class="slide" id="s5">
       <div class="bg-glow"></div>
       <div class="content">
@@ -351,6 +298,7 @@
       </div>
     </div>
 
+    <!-- Slide 6 -->
     <div class="slide" id="s6">
       <div class="bg-glow"></div>
       <div class="content">
@@ -363,6 +311,7 @@
       </div>
     </div>
 
+    <!-- Slide 7 -->
     <div class="slide" id="s7">
       <div class="bg-glow"></div>
       <div class="content">
@@ -372,17 +321,18 @@
       </div>
     </div>
 
+    <!-- Slide 8: CTA & Contact -->
     <div class="slide" id="s8">
       <div class="bg-glow"></div>
       <div class="content">
         <div class="eyebrow">Get started today</div>
         <div class="big-stat">K149<span style="font-size:20px;color:#b0c0e8;">/month</span></div>
-        <div class="cta-btn">Start 14-Day Free Trial →</div>
+        <p class="sub" style="font-size:14px;">14-day free trial. No risk, no commitment.</p>
+        <div class="cta-btn">Sign up free →</div>
         
-        <div class="contact-box">
-          <div class="contact-title">Get In Touch With Us:</div>
-          <div class="contact-item">📞 <span>0777363303</span></div>
-          <div class="contact-item">✉️ <span>vyeta.solutions@outlook.com</span></div>
+        <div class="contact-details">
+          📞 <span>0777363303</span><br>
+          ✉️ <span>vyeta.solutions@outlook.com</span>
         </div>
 
         <div class="trial-badge">Built in Zambia, for Zambian businesses</div>
@@ -401,7 +351,10 @@
 <script>
   // Updated to include all 8 slides
   const slideIds = ['s1','s2','s3','s4','s5','s6','s7','s8'];
-  const DURATION = 3500; // 3.5 seconds per slide (~28s total video length)
+  
+  // SLOWED DOWN: Changed from 3400ms to 5000ms (5 seconds per slide)
+  const DURATION = 5000; 
+  
   let current = 0;
   let playing = true;
   let timer = null;
