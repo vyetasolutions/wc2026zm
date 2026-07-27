@@ -1,1296 +1,463 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAGNATE SPORTS INSIGHTS HUB</title>
-    <!-- Google Fonts Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #0b0f17;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.07);
-            --glass-border-glow: rgba(255, 255, 255, 0.15);
-            
-            /* Branding & Accent Colorways */
-            --zam-green: #1b8a5a;
-            --neon-green: #00ff9d;
-            --neon-blue: #00e5ff;
-            --neon-gold: #ffd700;
-            --neon-crimson: #ff2a5f;
-            --text-primary: #ffffff;
-            --text-secondary: #8a99ad;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(27, 138, 90, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(0, 229, 255, 0.05) 0%, transparent 40%);
-            color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
-            min-height: 100vh;
-            padding: 24px;
-            overflow-x: hidden;
-            line-height: 1.5;
-        }
-
-        /* Scrollbar Erasure for Sleek Look */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: rgba(0,0,0,0.1);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255,255,255,0.2);
-        }
-
-        /* Typography & Layout Header */
-        header {
-            margin-bottom: 32px;
-            border-bottom: 1px solid var(--glass-border);
-            padding-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .brand-flag {
-            font-size: 2rem;
-        }
-
-        .brand-title h1 {
-            font-weight: 900;
-            font-size: 1.6rem;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #ffffff 50%, var(--neon-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-        }
-
-        .brand-title p {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .terminal-status {
-            font-size: 0.75rem;
-            font-family: monospace;
-            background: rgba(0, 0, 0, 0.4);
-            padding: 8px 16px;
-            border-radius: 30px;
-            border: 1px solid var(--glass-border);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--neon-green);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--neon-green);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 157, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(0, 255, 157, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 157, 0); }
-        }
-
-        /* Section Global Layouts */
-        section {
-            margin-bottom: 40px;
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 18px;
-            padding-left: 4px;
-        }
-
-        .section-header h2 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-primary);
-        }
-
-        .section-header span {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-        }
-
-        /* Core Swipe Row / Horizontal Scroll Layout */
-        .scroll-row {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 20px;
-            padding-bottom: 12px;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        /* Glassmorphism Cards Architecture */
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 24px;
-            min-width: 340px;
-            max-width: 340px;
-            scroll-snap-align: start;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        @media (max-width: 400px) {
-            .glass-card {
-                min-width: 290px;
-                max-width: 290px;
-                padding: 16px;
-            }
-        }
-
-        .glass-card:hover {
-            border-color: var(--glass-border-glow);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
-        }
-
-        /* Section 1 & 3: Match Matrix UI Elements */
-        .match-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            margin-bottom: 14px;
-        }
-
-        .badge-live {
-            background: rgba(255, 42, 95, 0.15);
-            color: var(--neon-crimson);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: 700;
-            border: 1px solid rgba(255, 42, 95, 0.3);
-            text-transform: uppercase;
-            font-size: 0.65rem;
-            letter-spacing: 0.5px;
-        }
-
-        .match-teams {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 18px;
-        }
-
-        .team-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .team-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .team-logo-fallback {
-            width: 28px;
-            height: 28px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.75rem;
-            border: 1px solid var(--glass-border);
-            color: var(--text-secondary);
-        }
-
-        .team-name {
-            font-weight: 600;
-            font-size: 1rem;
-        }
-
-        .team-score {
-            font-size: 1.25rem;
-            font-weight: 900;
-            font-family: monospace;
-        }
-
-        /* Analytical Probability System */
-        .analysis-metrics {
-            border-top: 1px dashed var(--glass-border);
-            padding-top: 14px;
-            margin-bottom: 16px;
-        }
-
-        .prob-header {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            margin-bottom: 6px;
-            letter-spacing: 0.5px;
-        }
-
-        .prob-bar-container {
-            height: 6px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 3px;
-            display: flex;
-            overflow: hidden;
-            margin-bottom: 8px;
-        }
-
-        .prob-segment {
-            height: 100%;
-            transition: width 0.6s ease-in-out;
-        }
-
-        .prob-home { background: var(--neon-green); }
-        .prob-draw { background: var(--text-secondary); }
-        .prob-away { background: var(--neon-blue); }
-
-        .xg-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.75rem;
-            font-family: monospace;
-            color: var(--text-secondary);
-        }
-        .xg-value {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        /* Premium Feature: Live Momentum Visualization */
-        .momentum-title {
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            margin-bottom: 6px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .momentum-container {
-            height: 16px;
-            background: rgba(0,0,0,0.2);
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            padding: 0 4px;
-            position: relative;
-            border: 1px solid var(--glass-border);
-        }
-
-        .momentum-center-line {
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 1px;
-            background: rgba(255,255,255,0.2);
-            z-index: 1;
-        }
-
-        .momentum-bar {
-            height: 8px;
-            border-radius: 2px;
-            transition: width 0.4s cubic-bezier(0.1, 0.8, 0.3, 1);
-            position: absolute;
-        }
-
-        .momentum-home {
-            right: 50%;
-            background: linear-gradient(to left, var(--neon-green), transparent);
-            border-radius: 2px 0 0 2px;
-        }
-
-        .momentum-away {
-            left: 50%;
-            background: linear-gradient(to right, var(--neon-blue), transparent);
-            border-radius: 0 2px 2px 0;
-        }
-
-        /* Form Trackers */
-        .form-indicator {
-            display: flex;
-            gap: 4px;
-        }
-        .form-dot {
-            width: 14px;
-            height: 14px;
-            border-radius: 3px;
-            font-size: 0.6rem;
-            font-weight: 900;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .form-w { background: rgba(0, 255, 157, 0.2); color: var(--neon-green); border: 1px solid rgba(0, 255, 157, 0.4); }
-        .form-d { background: rgba(255, 255, 255, 0.1); color: var(--text-secondary); border: 1px solid rgba(255, 255, 255, 0.2); }
-        .form-l { background: rgba(255, 42, 95, 0.2); color: var(--neon-crimson); border: 1px solid rgba(255, 42, 95, 0.4); }
-
-        /* Section 2: World Cup Tracking Tables Elements */
-        .wc-group-card {
-            min-width: 300px;
-            max-width: 300px;
-        }
-
-        .group-title {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--neon-gold);
-            border-bottom: 1px solid var(--glass-border);
-            padding-bottom: 8px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        .mini-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.8rem;
-        }
-
-        .mini-table th {
-            color: var(--text-secondary);
-            text-align: left;
-            padding: 4px 6px;
-            font-weight: 400;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-        }
-
-        .mini-table td {
-            padding: 6px;
-            border-bottom: 1px solid rgba(255,255,255,0.02);
-        }
-
-        .mini-table tr:last-child td {
-            border: none;
-        }
-
-        .cell-center { text-align: center; }
-        .cell-bold { font-weight: 700; color: var(--text-primary); }
-
-        /* Section 4: African Engine UI Cards */
-        .africa-card {
-            background: linear-gradient(145deg, rgba(27, 138, 90, 0.05), rgba(255, 215, 0, 0.02));
-        }
-        
-        .comp-tag {
-            font-size: 0.65rem;
-            background: rgba(27, 138, 90, 0.2);
-            color: #00ff9d;
-            border: 1px solid rgba(27, 138, 90, 0.4);
-            padding: 2px 6px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        /* Section 5: AI Insights Engine UI Styles */
-        .insight-card {
-            min-width: 310px;
-            max-width: 310px;
-            border-left: 3px solid var(--neon-blue);
-        }
-
-        .insight-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.75rem;
-            color: var(--neon-blue);
-            text-transform: uppercase;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .insight-body {
-            font-size: 0.85rem;
-            color: #e2e8f0;
-            line-height: 1.4;
-        }
-
-        .insight-footer {
-            margin-top: 14px;
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            font-family: monospace;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        /* Live Commentary / Pulse Panel Layer */
-        .live-pulse-panel {
-            margin-top: 14px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 12px;
-            padding: 12px;
-            border: 1px solid rgba(255,255,255,0.03);
-        }
-
-        .panel-title {
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .comment-stream {
-            max-height: 80px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            margin-bottom: 8px;
-            padding-right: 4px;
-        }
-
-        .comment-node {
-            font-size: 0.75rem;
-            line-height: 1.3;
-            padding-bottom: 4px;
-            border-bottom: 1px solid rgba(255,255,255,0.02);
-        }
-
-        .comment-user {
-            color: var(--neon-gold);
-            font-weight: 600;
-            font-family: monospace;
-            margin-right: 4px;
-        }
-
-        .comment-text {
-            color: #cbd5e1;
-        }
-
-        .comment-input-group {
-            display: flex;
-            gap: 6px;
-        }
-
-        .comment-input {
-            flex: 1;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--glass-border);
-            border-radius: 6px;
-            padding: 6px 10px;
-            color: #fff;
-            font-size: 0.75rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .comment-input:focus {
-            border-color: var(--neon-blue);
-        }
-
-        .comment-btn {
-            background: rgba(0, 229, 255, 0.1);
-            border: 1px solid rgba(0, 229, 255, 0.3);
-            color: var(--neon-blue);
-            border-radius: 6px;
-            padding: 0 10px;
-            font-size: 0.75rem;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-
-        .comment-btn:hover {
-            background: var(--neon-blue);
-            color: #000;
-        }
-
-        /* Informational States / Fallback Engine Displays */
-        .fallback-alert {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            background: rgba(255,255,255,0.02);
-            padding: 12px 20px;
-            border-radius: 12px;
-            border: 1px solid var(--glass-border);
-            width: 100%;
-        }
-
-        /* Config Modal for API Key Settings */
-        .settings-toggle {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            color: var(--text-secondary);
-            padding: 8px 16px;
-            border-radius: 30px;
-            font-size: 0.75rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.2s;
-        }
-
-        .settings-toggle:hover {
-            color: #fff;
-            border-color: rgba(255,255,255,0.2);
-        }
-
-        .config-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(5, 8, 14, 0.85);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0; pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .config-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .config-modal {
-            background: #0f1524;
-            border: 1px solid rgba(255,255,255,0.15);
-            width: 90%;
-            max-width: 460px;
-            border-radius: 24px;
-            padding: 32px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-        }
-
-        .config-modal h3 {
-            margin-bottom: 12px;
-            font-size: 1.2rem;
-            color: var(--neon-gold);
-        }
-
-        .config-modal p {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            margin-bottom: 6px;
-            letter-spacing: 0.5px;
-        }
-
-        .form-group input {
-            width: 100%;
-            background: rgba(0,0,0,0.3);
-            border: 1px solid var(--glass-border);
-            padding: 12px;
-            border-radius: 8px;
-            color: #fff;
-            font-family: monospace;
-            font-size: 0.85rem;
-            outline: none;
-        }
-
-        .form-group input:focus {
-            border-color: var(--neon-green);
-        }
-
-        .modal-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 12px;
-            margin-top: 24px;
-        }
-
-        .btn-primary {
-            background: var(--neon-green);
-            color: #05080e;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            cursor: pointer;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 1px solid var(--glass-border);
-            color: var(--text-secondary);
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            cursor: pointer;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Vyeta Business Hub — Facebook Ad Slideshow</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Cormorant+Garamond:wght@600;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0f172a;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px 12px;
+  }
+
+  .instructions {
+    max-width: 480px;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 13px;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  .instructions b { color: #f8fafc; }
+
+  .stage {
+    position: relative;
+    width: min(92vw, 480px);
+    aspect-ratio: 4 / 5;
+    background: #020617;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
+  }
+
+  /* Persistent Logo Header visible across all slides */
+  .top-logo-bar {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    pointer-events: none;
+  }
+  .top-logo-bar img {
+    height: 52px;
+    width: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #000;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 84px 36px 36px;
+    opacity: 0;
+    transform: scale(1.04);
+    transition: opacity 0.7s ease, transform 0.9s ease;
+    pointer-events: none;
+  }
+  .slide.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+  }
+
+  .bg-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 25%, #14224d 0%, #020617 75%);
+    z-index: 0;
+  }
+
+  .content { 
+    position: relative; 
+    z-index: 1; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    width: 100%;
+  }
+
+  .eyebrow {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: #d4972a; margin-bottom: 12px;
+    opacity: 0; animation: rise 0.6s ease forwards 0.2s;
+  }
+
+  h1.headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 1.15;
+    color: #f8fafc;
+    margin-bottom: 14px;
+    opacity: 0; animation: rise 0.65s ease forwards 0.3s;
+  }
+
+  p.sub {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #b0c0e8;
+    max-width: 340px;
+    opacity: 0; animation: rise 0.65s ease forwards 0.42s;
+  }
+
+  /* Star Feature Badge & Visuals */
+  .star-badge {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    padding: 6px 16px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+    box-shadow: 0 0 25px rgba(37, 99, 235, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    opacity: 0;
+    animation: pop 0.5s ease forwards 0.15s;
+  }
+
+  .ocr-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 18px;
+    opacity: 0;
+    animation: rise 0.6s ease forwards 0.55s;
+    width: 100%;
+  }
+  .ocr-box {
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #60a5fa;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+  .ocr-arrow {
+    color: #d4972a;
+    font-weight: 800;
+    font-size: 16px;
+  }
+
+  .feature-list {
+    display: flex; flex-direction: column; gap: 12px; margin-top: 10px; width: 100%; max-width: 340px;
+  }
+  .feature-row {
+    display: flex; align-items: center; gap: 12px; text-align: left;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(212,151,42,0.22);
+    border-radius: 14px;
+    padding: 12px 16px;
+    opacity: 0; transform: translateX(-14px);
+    animation: rise-x 0.55s ease forwards;
+  }
+  .feature-row:nth-child(1) { animation-delay: 0.25s; }
+  .feature-row:nth-child(2) { animation-delay: 0.4s; }
+  .feature-row:nth-child(3) { animation-delay: 0.55s; }
+  .feature-row .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #d4972a; flex-shrink: 0;
+  }
+  .feature-row span.txt { font-size: 14px; color: #e2e8f0; font-weight: 600; }
+
+  @keyframes pop {
+    0% { opacity: 0; transform: scale(0.6); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  @keyframes rise {
+    0% { opacity: 0; transform: translateY(14px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes rise-x {
+    0% { opacity: 0; transform: translateX(-14px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+
+  .big-stat {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 56px;
+    color: #d4972a;
+    line-height: 1;
+    margin-bottom: 6px;
+    opacity: 0; animation: rise 0.6s ease forwards 0.3s;
+  }
+
+  .cta-btn {
+    margin-top: 16px;
+    background: linear-gradient(180deg, #f0c356, #d4972a 60%, #b3791f);
+    color: #020617;
+    font-weight: 800;
+    font-size: 15px;
+    padding: 13px 30px;
+    border-radius: 999px;
+    box-shadow: 0 8px 24px rgba(212,151,42,0.35);
+    opacity: 0; animation: rise 0.6s ease forwards 0.5s;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  /* Contact Information Box on Final Slide */
+  .contact-box {
+    margin-top: 16px;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(59, 130, 246, 0.35);
+    border-radius: 14px;
+    padding: 12px 18px;
+    width: 100%;
+    max-width: 320px;
+    text-align: left;
+    opacity: 0;
+    animation: rise 0.6s ease forwards 0.62s;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  }
+  .contact-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #94a3b8;
+    margin-bottom: 6px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .contact-item {
+    font-size: 13.5px;
+    color: #f8fafc;
+    font-weight: 600;
+    margin: 4px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .contact-item span {
+    color: #60a5fa;
+  }
+
+  .trial-badge {
+    margin-top: 12px;
+    font-size: 11.5px;
+    color: #94a3b8;
+    opacity: 0; animation: rise 0.6s ease forwards 0.72s;
+  }
+
+  .progress-wrap {
+    display: flex; gap: 6px; margin-top: 18px; width: min(92vw, 480px);
+  }
+  .progress-track {
+    flex: 1; height: 3px; background: rgba(148,163,184,0.25); border-radius: 999px; overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; width: 0%; background: #d4972a; border-radius: 999px;
+  }
+  .progress-track.done .progress-fill { width: 100%; transition: none; }
+  .progress-track.active .progress-fill { width: 100%; transition: width linear; }
+
+  .controls {
+    margin-top: 14px; display: flex; gap: 10px;
+  }
+  .ctrl-btn {
+    font-size: 12px; font-weight: 600; color: #f8fafc;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 999px;
+    padding: 7px 16px; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .ctrl-btn:hover { background: rgba(255,255,255,0.2); }
+</style>
 </head>
 <body>
 
-    <!-- Platform Header Frame -->
-    <header>
-        <div class="brand">
-            <div class="brand-flag">🇿🇲</div>
-            <div class="brand-title">
-                <h1>MAGNATE Media Sports Hub</h1>
-                <p>World Cup 2026 & African Football Analytics</p>
-            </div>
-        </div>
-        <div style="display: flex; gap: 12px; align-items: center;">
-            <button class="settings-toggle" onclick="toggleConfigModal(true)">
-                ⚙️ Live Data Settings
-            </button>
-            <div class="terminal-status">
-                <div class="pulse-dot"></div>
-                <span id="runtime-clock">LIVE ZONE // 2026</span>
-            </div>
-        </div>
-    </header>
+  <div class="instructions">
+    <b>Vyeta Business Hub — Facebook Ad Slideshow.</b><br>
+    Playing automatically below. To create your Facebook ad: use your phone or laptop screen recorder to record it playing through once (~28 seconds), then trim and upload!
+  </div>
 
-    <!-- SECTION 1: ZamWorld Daily Match Intelligence -->
-    <section>
-        <div class="section-header">
-            <h2>Today's Match Focus</h2>
-            <span>• Pre-game Stats & Win Probabilities</span>
-        </div>
-        <div id="row-daily-intelligence" class="scroll-row">
-            <!-- Dynamic Injection or Fallback Shell -->
-        </div>
-    </section>
+  <div class="stage" id="stage">
 
-    <!-- SECTION 2: World Cup 2026 Tracker -->
-    <section>
-        <div class="section-header">
-            <h2>Road to the World Cup</h2>
-            <span>• Latest Group Standings</span>
-        </div>
-        <div id="row-wc-tracker" class="scroll-row">
-            <!-- Dynamic Standings Framework -->
-        </div>
-    </section>
-
-    <!-- SECTION 3: Live Match Center -->
-    <section>
-        <div class="section-header">
-            <h2>Matchday Center</h2>
-            <span>• Live Scores, Events & Match Momentum</span>
-        </div>
-        <div id="row-live-center" class="scroll-row">
-            <!-- Dynamic Injection or Live Fallbacks -->
-        </div>
-    </section>
-
-    <!-- SECTION 4: Zambia & Africa Focus -->
-    <section>
-        <div class="section-header">
-            <h2>The Motherland Focus</h2>
-            <span>• Deep Dive into Zambian & African Football</span>
-        </div>
-        <div id="row-africa-focus" class="scroll-row">
-            <!-- Dynamic African Context Node -->
-        </div>
-    </section>
-
-    <!-- SECTION 5: AI Football Insights Layer -->
-    <section>
-        <div class="section-header">
-            <h2>AI Form Guide</h2>
-            <span>• Data-Driven Trends (Real Stats, No Guesswork)</span>
-        </div>
-        <div id="row-ai-insights" class="scroll-row">
-            <!-- Rule-Based Deterministic Analytics Framework -->
-        </div>
-    </section>
-
-    <!-- Configuration Modal Structural Overlay -->
-    <div id="configOverlay" class="config-overlay">
-        <div class="config-modal">
-            <h3>Live Data Setup</h3>
-            <p>Connect your APIs to get real-time scores and power the live fan comments.</p>
-            
-            <div class="form-group">
-                <label>API-Football (RapidAPI Key)</label>
-                <input type="text" id="inputApiKey" placeholder="Paste X-RapidAPI-Key...">
-            </div>
-            
-            <div class="form-group">
-                <label>Google Apps Script URL (For Comments)</label>
-                <input type="text" id="inputScriptUrl" placeholder="https://script.google.com/macros/s/.../exec">
-            </div>
-
-            <div class="modal-actions">
-                <button class="btn-secondary" onclick="toggleConfigModal(false)">Cancel</button>
-                <button class="btn-primary" onclick="saveConfiguration()">Save Changes</button>
-            </div>
-        </div>
+    <div class="top-logo-bar">
+      <img src="612395529_911449065271796_2196795057515150708_n.jpg" alt="Vyeta Logo">
     </div>
 
-    <!-- Application Initialization Logic Engine -->
-    <script>
-        // System State Machine
-        const CONFIG = {
-            apiKey: localStorage.getItem('zamworld_api_key') || '',
-            scriptUrl: localStorage.getItem('zamworld_script_url') || '',
-            isMockData: true
-        };
+    <div class="slide active" id="s1">
+      <div class="bg-glow"></div>
+      <div class="content">
+        <div class="eyebrow">For Zambian businesses</div>
+        <h1 class="headline">Still running your<br>business on notebooks<br>and guesswork?</h1>
+        <p class="sub">Lost receipts. No idea what's really in stock. No clue if you're actually making money.</p>
+      </div>
+    </div>
 
-        // Complete Mock Data Core Layer to handle operational fallbacks cleanly
-        const MOCK_DATA = {
-            dailyIntelligence: [
-                { id: "wc-101", home: "Zambia", away: "Morocco", homeIso: "ZM", awayIso: "MA", status: "18:00", elapsed: null, probHome: 42, probDraw: 28, probAway: 30, xgHome: "1.64", xgAway: "1.41", stage: "CAF WC Qualifiers" },
-                { id: "wc-102", home: "Senegal", away: "Nigeria", homeIso: "SN", awayIso: "NG", status: "21:00", elapsed: null, probHome: 38, probDraw: 32, probAway: 30, xgHome: "1.22", xgAway: "1.18", stage: "CAF WC Qualifiers" },
-                { id: "wc-103", home: "Argentina", away: "France", homeIso: "AR", awayIso: "FR", status: "15:00", elapsed: null, probHome: 35, probDraw: 30, probAway: 35, xgHome: "1.85", xgAway: "1.90", stage: "International Friendly" }
-            ],
-            liveMatches: [
-                { id: "wc-live-01", home: "Zambia", away: "Algeria", homeScore: 2, awayScore: 1, status: "LIVE", elapsed: 74, homeIso: "ZM", awayIso: "DZ", momentum: 68, events: ["12' Goal - F. Sakala (ZM)", "44' Yellow - R. Mahrez (DZ)", "55' Goal - H. Aouar (DZ)", "69' Goal - P. Daka (ZM)"] },
-                { id: "wc-live-02", home: "South Africa", away: "Ghana", homeScore: 0, awayScore: 0, status: "LIVE", elapsed: 32, homeIso: "ZA", awayIso: "GH", momentum: 45, events: ["18' Yellow - T. Partey (GH)"] }
-            ],
-            wcGroups: [
-                { group: "Group A", standings: [
-                    { pos: 1, team: "Zambia", p: 4, gd: "+5", pts: 10 },
-                    { pos: 2, team: "Morocco", p: 4, gd: "+3", pts: 9 },
-                    { pos: 3, team: "Congo", p: 4, gd: "-2", pts: 4 },
-                    { pos: 4, team: "Niger", p: 4, gd: "-6", pts: 0 }
-                ]},
-                { group: "Group B", standings: [
-                    { pos: 1, team: "Senegal", p: 4, gd: "+6", pts: 12 },
-                    { pos: 2, team: "Sudan", p: 4, gd: "+1", pts: 7 },
-                    { pos: 3, team: "Togo", p: 4, gd: "-2", pts: 4 },
-                    { pos: 4, team: "Mauritania", p: 4, gd: "-5", pts: 0 }
-                ]}
-            ],
-            africaFocus: [
-                { id: "af-201", tournament: "COSAFA Cup 2026", match: "Zambia vs Namibia", data: "Chipolopolo are dominating possession, moving the ball beautifully across the pitch in their recent regional clashes." },
-                { id: "af-202", tournament: "CAF Champions League", match: "Zesco United vs Al Ahly", data: "Playing at high altitude is taking its toll—Al Ahly's passing accuracy drops noticeably after the 60-minute mark." }
-            ],
-            aiInsights: [
-                { type: "POSSESSION & ATTACK", message: "Zambia loves the counter-attack, moving from defense to the opponent's box in under 8 seconds on average across their last 5 games.", context: "Recent Form Data" },
-                { type: "LATE GAME PRESSURE", message: "Algeria tends to drop deep and defend their box when under heavy pressure late in the game, especially in hot conditions.", context: "Fatigue Analysis" },
-                { type: "AWAY FORM TREND", message: "Morocco struggles to keep a clean sheet away from home when they have less than 45% possession.", context: "Historical Form" }
-            ],
-            commentsFallback: {
-                "wc-live-01": [
-                    { user: "Fan-849", text: "Daka is looking so sharp up front today! We need to hold this lead!" },
-                    { user: "Fan-211", text: "Midfield is doing a great job cutting off their passing lanes." }
-                ],
-                "wc-live-02": [
-                    { user: "Fan-902", text: "Tight game so far. Neither team wants to make the first mistake." }
-                ]
-            }
-        };
+    <div class="slide" id="s2">
+      <div class="bg-glow"></div>
+      <div class="content">
+        <div class="eyebrow" style="color:#60a5fa;">Introducing</div>
+        <h1 class="headline" style="font-size:42px; color:#ffffff;">Vyeta Business Hub</h1>
+        <p class="sub">The all-in-one app built for Zambian entrepreneurs — invoices, stock, staff, and profit, all in one place.</p>
+      </div>
+    </div>
 
-        // Orchestrator Initialization
-        window.addEventListener('DOMContentLoaded', () => {
-            initializeClock();
-            checkApiConfiguration();
-            loadEngineData();
-            
-            // Loop updates every 60 seconds
-            setInterval(() => {
-                loadEngineData();
-            }, 60000);
-        });
+    <div class="slide" id="s3">
+      <div class="bg-glow"></div>
+      <div class="content">
+        <div class="eyebrow">In seconds, not hours</div>
+        <h1 class="headline" style="font-size:32px;">Create Invoices,<br>Quotations & Receipts<br>instantly</h1>
+        <p class="sub">Professional PDF documents, generated on your phone, shared straight to WhatsApp.</p>
+      </div>
+    </div>
 
-        function initializeClock() {
-            const clock = document.getElementById('runtime-clock');
-            const updateTime = () => {
-                const now = new Date();
-                clock.textContent = `LIVE ZONE // ${now.toISOString().replace('T', ' ').substring(0, 19)} UTC`;
-            };
-            updateTime();
-            setInterval(updateTime, 1000);
-        }
+    <div class="slide" id="s4">
+      <div class="bg-glow"></div>
+      <div class="content">
+        <div class="star-badge">★ OUR STAR FEATURE ★</div>
+        <h1 class="headline" style="font-size:32px;">Smart OCR Document<br>Management</h1>
+        <p class="sub">Upload images of bills and receipts. Our smart OCR converts them into clear, searchable files instantly — so you are never left searching.</p>
+        <div class="ocr-visual">
+          <div class="ocr-box">📸 Snap & Upload</div>
+          <div class="ocr-arrow">➔</div>
+          <div class="ocr-box">🔍 Instant Search</div>
+        </div>
+      </div>
+    </div>
 
-        function checkApiConfiguration() {
-            if (CONFIG.apiKey && CONFIG.apiKey !== '') {
-                CONFIG.isMockData = false;
-            } else {
-                CONFIG.isMockData = true;
-            }
-            document.getElementById('inputApiKey').value = CONFIG.apiKey;
-            document.getElementById('inputScriptUrl').value = CONFIG.scriptUrl;
-        }
+    <div class="slide" id="s5">
+      <div class="bg-glow"></div>
+      <div class="content">
+        <div class="eyebrow">Finally, clarity</div>
+        <h1 class="headline" style="font-size:32px;">See your real<br>profit margins</h1>
+        <p class="sub">Not just sales totals — know exactly what you're making on every single item.</p>
+      </div>
+    </div>
 
-        function toggleConfigModal(show) {
-            const modal = document.getElementById('configOverlay');
-            if (show) modal.classList.add('active');
-            else modal.classList.remove('active');
-        }
+    <div class="slide" id="s6">
+      <div class="bg-glow"></div>
+      <div class="content">
+        <div class="eyebrow">Everything you need</div>
+        <div class="feature-list">
+          <div class="feature-row"><div class="dot"></div><span class="txt">Stock tracking with low-stock alerts</span></div>
+          <div class="feature-row"><div class="dot"></div><span class="txt">Staff logins with controlled access</span></div>
+          <div class="feature-row"><div class="dot"></div><span class="txt">Works offline, syncs automatically</span></div>
+        </div>
+      </div>
+    </div>
 
-        function saveConfiguration() {
-            const key = document.getElementById('inputApiKey').value.trim();
-            const url = document.getElementById('inputScriptUrl').value.trim();
-            
-            localStorage.setItem('zamworld_api_key', key);
-            localStorage.setItem('zamworld_script_url', url);
-            
-            CONFIG.apiKey = key;
-            CONFIG.scriptUrl = url;
-            CONFIG.isMockData = (key === '');
-            
-            toggleConfigModal(false);
-            loadEngineData();
-        }
+    <div class="slide" id="s7">
+      <div class="bg-glow"></div>
+      <div class="content">
+        <div class="eyebrow">No bank account needed</div>
+        <h1 class="headline" style="font-size:32px;">Pay with MTN or<br>Airtel Mobile Money</h1>
+        <p class="sub">Simple, local, and built around how Zambian businesses actually get paid.</p>
+      </div>
+    </div>
 
-        // Central Processing Pipeline for External vs Internal Data Sources
-        async function loadEngineData() {
-            if (CONFIG.isMockData) {
-                renderAllComponents(MOCK_DATA);
-            } else {
-                try {
-                    const fetchedData = await fetchProductionData();
-                    renderAllComponents(fetchedData);
-                } catch (error) {
-                    console.error("Failed to load live API data. Falling back to default display.", error);
-                    renderAllComponents(MOCK_DATA);
-                }
-            }
-        }
+    <div class="slide" id="s8">
+      <div class="bg-glow"></div>
+      <div class="content">
+        <div class="eyebrow">Get started today</div>
+        <div class="big-stat">K149<span style="font-size:20px;color:#b0c0e8;">/month</span></div>
+        <div class="cta-btn">Start 14-Day Free Trial →</div>
+        
+        <div class="contact-box">
+          <div class="contact-title">Get In Touch With Us:</div>
+          <div class="contact-item">📞 <span>0777363303</span></div>
+          <div class="contact-item">✉️ <span>vyeta.solutions@outlook.com</span></div>
+        </div>
 
-        // Production API Gateway Infrastructure Strategy for API-Football
-        async function fetchProductionData() {
-            const headers = {
-                'x-rapidapi-key': CONFIG.apiKey,
-                'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
-            };
+        <div class="trial-badge">Built in Zambia, for Zambian businesses</div>
+      </div>
+    </div>
 
-            // Fetch live components safely via Promise arrays
-            const [liveRes, structuresRes] = await Promise.all([
-                fetch('https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all', { headers }).catch(e => null),
-                fetch('https://api-football-v1.p.rapidapi.com/v3/standings?league=1&season=2026', { headers }).catch(e => null) // Adjust league context
-            ]);
+  </div>
 
-            let apiLive = [];
-            if (liveRes && liveRes.ok) {
-                const json = await liveRes.json();
-                apiLive = json.response || [];
-            }
+  <div class="progress-wrap" id="progress-wrap"></div>
 
-            // Map standard API data structures to app layout components
-            const mappedDaily = apiLive.map(m => {
-                // Algorithmic processing engine mapping raw metrics to calculated UI components
-                const goalsHome = m.goals.home ?? 0;
-                const goalsAway = m.goals.away ?? 0;
-                const baseProbHome = 33 + (goalsHome * 5) - (goalsAway * 4);
-                const baseProbAway = 33 + (goalsAway * 5) - (goalsHome * 4);
-                const sum = baseProbHome + baseProbAway;
-                const finalHome = Math.min(Math.max(Math.round((baseProbHome / (sum + 14)) * 100), 10), 80);
-                const finalAway = Math.min(Math.max(Math.round((baseProbAway / (sum + 14)) * 100), 10), 80);
-                const finalDraw = 100 - finalHome - finalAway;
+  <div class="controls">
+    <button class="ctrl-btn" onclick="togglePlay()" id="play-btn">Pause</button>
+    <button class="ctrl-btn" onclick="restart()">Replay from start</button>
+  </div>
 
-                return {
-                    id: m.fixture.id.toString(),
-                    home: m.teams.home.name,
-                    away: m.teams.away.name,
-                    homeIso: m.teams.home.name.substring(0,2).toUpperCase(),
-                    awayIso: m.teams.away.name.substring(0,2).toUpperCase(),
-                    status: "LIVE",
-                    elapsed: m.fixture.status.elapsed,
-                    probHome: finalHome,
-                    probDraw: finalDraw,
-                    probAway: finalAway,
-                    xgHome: (1.1 + (goalsHome * 0.4)).toFixed(2),
-                    xgAway: (0.9 + (goalsAway * 0.4)).toFixed(2),
-                    stage: m.league.name
-                };
-            });
+<script>
+  // Updated to include all 8 slides
+  const slideIds = ['s1','s2','s3','s4','s5','s6','s7','s8'];
+  const DURATION = 3500; // 3.5 seconds per slide (~28s total video length)
+  let current = 0;
+  let playing = true;
+  let timer = null;
 
-            const mappedLive = apiLive.map(m => {
-                // Extracting live events dynamically
-                const eventsArray = (m.events || []).slice(-4).map(e => {
-                    return `${e.time.elapsed}' ${e.type} - ${e.player.name || ''} (${e.team.name.substring(0,3).toUpperCase()})`;
-                });
+  const progWrap = document.getElementById('progress-wrap');
+  slideIds.forEach(() => {
+    const track = document.createElement('div');
+    track.className = 'progress-track';
+    track.innerHTML = '<div class="progress-fill"></div>';
+    progWrap.appendChild(track);
+  });
+  const tracks = progWrap.querySelectorAll('.progress-track');
 
-                // Compute real momentum via raw processing loops
-                let momentumMetric = 50;
-                if(m.statistics && m.statistics.length > 0) {
-                    const homeShots = parseInt(m.statistics[0]?.statistics?.find(s => s.type === "Shots on Goal")?.value || 0);
-                    const awayShots = parseInt(m.statistics[1]?.statistics?.find(s => s.type === "Shots on Goal")?.value || 0);
-                    if(homeShots + awayShots > 0) {
-                        momentumMetric = Math.round((homeShots / (homeShots + awayShots)) * 100);
-                    }
-                }
+  function showSlide(i) {
+    slideIds.forEach((id, idx) => {
+      document.getElementById(id).classList.toggle('active', idx === i);
+    });
+    tracks.forEach((t, idx) => {
+      t.classList.remove('active', 'done');
+      const fill = t.querySelector('.progress-fill');
+      fill.style.transition = 'none';
+      fill.style.width = '0%';
+      if (idx < i) t.classList.add('done');
+    });
+    void tracks[i].offsetWidth;
+    tracks[i].classList.add('active');
+    const fill = tracks[i].querySelector('.progress-fill');
+    fill.style.transition = `width ${DURATION}ms linear`;
+    requestAnimationFrame(() => { fill.style.width = '100%'; });
+  }
 
-                return {
-                    id: m.fixture.id.toString(),
-                    home: m.teams.home.name,
-                    away: m.teams.away.name,
-                    homeScore: m.goals.home ?? 0,
-                    awayScore: m.goals.away ?? 0,
-                    status: "LIVE",
-                    elapsed: m.fixture.status.elapsed,
-                    homeIso: m.teams.home.name.substring(0,2).toUpperCase(),
-                    awayIso: m.teams.away.name.substring(0,2).toUpperCase(),
-                    momentum: momentumMetric,
-                    events: eventsArray.length > 0 ? eventsArray : ["No major match events yet."]
-                };
-            });
+  function next() {
+    current = (current + 1) % slideIds.length;
+    showSlide(current);
+  }
 
-            // Return synthesized dynamic system object combined with tracking data fallbacks
-            return {
-                dailyIntelligence: mappedDaily.length > 0 ? mappedDaily : MOCK_DATA.dailyIntelligence,
-                liveMatches: mappedLive.length > 0 ? mappedLive : MOCK_DATA.liveMatches,
-                wcGroups: MOCK_DATA.wcGroups,
-                africaFocus: MOCK_DATA.africaFocus,
-                aiInsights: mappedLive.length > 0 ? [
-                    { type: "LIVE FORM UPDATE", message: `We are currently tracking live data across ${mappedLive.length} active matches around the world.`, context: "Live Calculation" }
-                ] : MOCK_DATA.aiInsights,
-                commentsFallback: MOCK_DATA.commentsFallback
-            };
-        }
+  function tick() {
+    clearInterval(timer);
+    timer = setInterval(() => { if (playing) next(); }, DURATION);
+  }
 
-        // View Renderer Engine
-        function renderAllComponents(data) {
-            renderDailyIntelligence(data.dailyIntelligence);
-            renderWcTracker(data.wcGroups);
-            renderLiveCenter(data.liveMatches, data.commentsFallback);
-            renderAfricaFocus(data.africaFocus);
-            renderAiInsights(data.aiInsights);
-        }
+  function togglePlay() {
+    playing = !playing;
+    document.getElementById('play-btn').textContent = playing ? 'Play' : 'Pause';
+  }
 
-        function renderDailyIntelligence(items) {
-            const container = document.getElementById('row-daily-intelligence');
-            if(!items || items.length === 0) {
-                container.innerHTML = `<div class="fallback-alert">No matches scheduled for today.</div>`;
-                return;
-            }
-            container.innerHTML = items.map(item => `
-                <div class="glass-card">
-                    <div>
-                        <div class="match-meta">
-                            <span>${item.stage}</span>
-                            ${item.elapsed ? `<span class="badge-live">${item.elapsed}'</span>` : `<span>${item.status}</span>`}
-                        </div>
-                        <div class="match-teams">
-                            <div class="team-row">
-                                <div class="team-info">
-                                    <div class="team-logo-fallback">${item.homeIso}</div>
-                                    <span class="team-name">${item.home}</span>
-                                </div>
-                            </div>
-                            <div class="team-row">
-                                <div class="team-info">
-                                    <div class="team-logo-fallback">${item.awayIso}</div>
-                                    <span class="team-name">${item.away}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="analysis-metrics">
-                        <div class="prob-header">
-                            <span>Home Win: ${item.probHome}%</span>
-                            <span>Draw: ${item.probDraw}%</span>
-                            <span>Away Win: ${item.probAway}%</span>
-                        </div>
-                        <div class="prob-bar-container">
-                            <div class="prob-segment prob-home" style="width: ${item.probHome}%"></div>
-                            <div class="prob-segment prob-draw" style="width: ${item.probDraw}%"></div>
-                            <div class="prob-segment prob-away" style="width: ${item.probAway}%"></div>
-                        </div>
-                        <div class="xg-row">
-                            <span>Expected Goals (xG)</span>
-                            <span class="xg-value">${item.xgHome} - ${item.xgAway}</span>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
+  function restart() {
+    current = 0;
+    showSlide(current);
+    playing = true;
+    document.getElementById('play-btn').textContent = 'Pause';
+  }
 
-        function renderWcTracker(groups) {
-            const container = document.getElementById('row-wc-tracker');
-            container.innerHTML = groups.map(g => `
-                <div class="glass-card wc-group-card">
-                    <div class="group-title">${g.group}</div>
-                    <table class="mini-table">
-                        <thead>
-                            <tr>
-                                <th>Pos</th>
-                                <th>Team</th>
-                                <th class="cell-center">P</th>
-                                <th class="cell-center">GD</th>
-                                <th class="cell-center">Pts</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${g.standings.map(s => `
-                                <tr>
-                                    <td class="cell-bold">${s.pos}</td>
-                                    <td>${s.team}</td>
-                                    <td class="cell-center">${s.p}</td>
-                                    <td class="cell-center">${s.gd}</td>
-                                    <td class="cell-center cell-bold" style="color:var(--neon-green)">${s.pts}</td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-                </div>
-            `).join('');
-        }
+  showSlide(0);
+  tick();
+</script>
 
-        function renderLiveCenter(matches, fallbacks) {
-            const container = document.getElementById('row-live-center');
-            if(!matches || matches.length === 0) {
-                container.innerHTML = `<div class="fallback-alert">No live matches right now. Check back at kick-off!</div>`;
-                return;
-            }
-            container.innerHTML = matches.map(m => `
-                <div class="glass-card" style="min-width:360px; max-width:360px;">
-                    <div>
-                        <div class="match-meta">
-                            <span class="badge-live">LIVE IN-PLAY</span>
-                            <span style="font-family:monospace; color:var(--neon-crimson); font-weight:700;">${m.elapsed}'</span>
-                        </div>
-                        <div class="match-teams" style="margin-bottom:12px;">
-                            <div class="team-row">
-                                <div class="team-info">
-                                    <div class="team-logo-fallback">${m.homeIso}</div>
-                                    <span class="team-name">${m.home}</span>
-                                </div>
-                                <span class="team-score">${m.homeScore}</span>
-                            </div>
-                            <div class="team-row">
-                                <div class="team-info">
-                                    <div class="team-logo-fallback">${m.awayIso}</div>
-                                    <span class="team-name">${m.away}</span>
-                                </div>
-                                <span class="team-score">${m.awayScore}</span>
-                            </div>
-                        </div>
-
-                        <!-- Live Momentum Module Implementation -->
-                        <div style="margin-bottom:14px;">
-                            <div class="momentum-title">
-                                <span>${m.home.substring(0,3).toUpperCase()} Attacking Pressure</span>
-                                <span style="color:var(--neon-blue)">${m.away.substring(0,3).toUpperCase()}</span>
-                            </div>
-                            <div class="momentum-container">
-                                <div class="momentum-center-line"></div>
-                                <div class="momentum-bar momentum-home" style="width: ${m.momentum > 50 ? (m.momentum - 50) * 2 : 0}%"></div>
-                                <div class="momentum-bar momentum-away" style="width: ${m.momentum < 50 ? (50 - m.momentum) * 2 : 0}%"></div>
-                            </div>
-                        </div>
-
-                        <!-- Micro Event Feed Stream -->
-                        <div style="margin-bottom:14px; background:rgba(0,0,0,0.15); padding:8px; border-radius:8px; border:1px solid rgba(255,255,255,0.02)">
-                            <div style="font-size:0.65rem; color:var(--text-secondary); text-transform:uppercase; margin-bottom:4px;">Match Action</div>
-                            <div style="display:flex; flex-direction:column; gap:4px;">
-                                ${m.events.map(ev => `<div style="font-size:0.7rem; font-family:monospace; color:#cbd5e1;">${ev}</div>`).join('')}
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Live Pulse System Panel Implementation -->
-                    <div class="live-pulse-panel">
-                        <div class="panel-title">
-                            <span>Live Fan Reactions</span>
-                            <span style="font-size:0.6rem; color:var(--neon-green)">● Live</span>
-                        </div>
-                        <div class="comment-stream" id="stream-${m.id}">
-                            <!-- Data Injected System Nodes -->
-                            <div style="font-size:0.7rem; color:var(--text-secondary)">Loading fan comments...</div>
-                        </div>
-                        <div class="comment-input-group">
-                            <input type="text" class="comment-input" id="input-${m.id}" placeholder="Have your say on the match...">
-                            <button class="comment-btn" onclick="executePostComment('${m.id}')">Post</button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-
-            // Post-render loop interface synchronization to feed comments
-            matches.forEach(m => {
-                syncCommentStreams(m.id, fallbacks[m.id] || []);
-            });
-        }
-
-        function renderAfricaFocus(items) {
-            const container = document.getElementById('row-africa-focus');
-            container.innerHTML = items.map(item => `
-                <div class="glass-card africa-card">
-                    <div>
-                        <div style="margin-bottom:10px;">
-                            <span class="comp-tag">${item.tournament}</span>
-                        </div>
-                        <div style="font-weight:700; font-size:1rem; margin-bottom:10px; color:#fff;">
-                            ${item.match}
-                        </div>
-                        <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.4;">
-                            ${item.data}
-                        </p>
-                    </div>
-                    <div style="margin-top:16px; font-size:0.65rem; font-family:monospace; color:var(--neon-gold); text-transform:uppercase;">
-                        Scouting Report: Southern Africa
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function renderAiInsights(items) {
-            const container = document.getElementById('row-ai-insights');
-            container.innerHTML = items.map(item => `
-                <div class="glass-card insight-card">
-                    <div>
-                        <div class="insight-header">
-                            <span>🧠</span>
-                            <span>${item.type}</span>
-                        </div>
-                        <p class="insight-body">
-                            "${item.message}"
-                        </p>
-                    </div>
-                    <div class="insight-footer">
-                        <span>Based on Recent Form</span>
-                        <span>High Confidence</span>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Commentary Processing Subsystems
-        async function syncCommentStreams(matchId, localFallbacks) {
-            const streamContainer = document.getElementById(`stream-${matchId}`);
-            if(!streamContainer) return;
-
-            if (CONFIG.isMockData || !CONFIG.scriptUrl) {
-                renderCommentsToWidget(streamContainer, localFallbacks);
-                return;
-            }
-
-            try {
-                // Production fetch pipeline to external Sheets cluster
-                const response = await fetch(`${CONFIG.scriptUrl}?match_id=${matchId}`);
-                if(response.ok) {
-                    const rawRows = await response.json();
-                    // Process array matrix elements dropping header definitions
-                    const cleanList = rawRows.slice(1)
-                        .filter(r => r[1] == matchId)
-                        .map(r => ({ user: r[2], text: r[3] }));
-                    
-                    renderCommentsToWidget(streamContainer, cleanList.length > 0 ? cleanList : localFallbacks);
-                } else {
-                    renderCommentsToWidget(streamContainer, localFallbacks);
-                }
-            } catch (e) {
-                renderCommentsToWidget(streamContainer, localFallbacks);
-            }
-        }
-
-        function renderCommentsToWidget(target, elements) {
-            if(elements.length === 0) {
-                target.innerHTML = `<div style="font-size:0.7rem; color:var(--text-secondary); italic;">Be the first to share your thoughts on this game!</div>`;
-                return;
-            }
-            target.innerHTML = elements.map(el => `
-                <div class="comment-node">
-                    <span class="comment-user">${el.user}:</span>
-                    <span class="comment-text">${el.text}</span>
-                </div>
-            `).join('');
-            target.scrollTop = target.scrollHeight;
-        }
-
-        async function executePostComment(matchId) {
-            const input = document.getElementById(`input-${matchId}`);
-            if(!input || input.value.trim() === "") return;
-
-            const targetInsight = input.value.trim();
-            const generationId = 'Fan-' + Math.floor(1000 + Math.random() * 9000);
-            
-            input.value = ""; // Flush DOM input node elements
-
-            // Optimistic rendering layer loop parameters instantly updating state
-            const targetStream = document.getElementById(`stream-${matchId}`);
-            const tempNode = document.createElement('div');
-            tempNode.className = 'comment-node';
-            tempNode.innerHTML = `<span class="comment-user">${generationId}:</span><span class="comment-text">${targetInsight}</span>`;
-            targetStream.appendChild(tempNode);
-            targetStream.scrollTop = targetStream.scrollHeight;
-
-            if(!CONFIG.isMockData && CONFIG.scriptUrl !== "") {
-                try {
-                    await fetch(CONFIG.scriptUrl, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            match_id: matchId,
-                            user_id: generationId,
-                            comment: targetInsight
-                        })
-                    });
-                } catch (error) {
-                    console.error("Failed to submit comment to backend.", error);
-                }
-            } else {
-                // Cache metrics mapping parameters locally inside mock framework array limits
-                if(!MOCK_DATA.commentsFallback[matchId]) MOCK_DATA.commentsFallback[matchId] = [];
-                MOCK_DATA.commentsFallback[matchId].push({ user: generationId, text: targetInsight });
-            }
-        }
-    </script>
 </body>
 </html>
